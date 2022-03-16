@@ -71,3 +71,4 @@ for(i in 1:3){
 }
 legend(83,1,legend = c(TeX(r'($\sigma = 0)'),TeX(r'($\sigma = 1)'),TeX(r'($\sigma = 5)')),col = c("red","blue","green"),lty = 1)
 legend(83,0.7, legend = c(TeX(r'($\mu = 1)'),TeX(r'($\lambda = 1)')))
+
