@@ -13,8 +13,8 @@ PGdens <- function(z,n,alph,bet,lambda) {partialsum = 0
 
 for(k in 1:n){
   partialsum = partialsum + dpois(k,lambda)*dgamma(z,alph*k,bet)
-
-return(partialsum)
+  
+  return(partialsum)
 }}
 
 zs1 = seq(0, 10, by = 0.05)
@@ -128,7 +128,7 @@ legend(16,0.66,legend = c("beta = 1","beta = 3","beta = 5"),col = c("red","blue"
 legend(16,0.42, legend = c("lambda = 1","alpha = 2"))
 
 #Monte Carlo Simulation_______________________________________________________________
-
+dev.off()
 lambda <- 2
 bet <- 2
 alph <- 3
@@ -164,6 +164,9 @@ poisson_gamma_montecarlo <- function(lambda,alpha,beta,nsim){
 monty = poisson_gamma_montecarlo(lambda = lambda,alpha = alph,beta = bet, nsim = 10000)
 
 hist(monty,ylim = c(0,2500))
+my_hist <- hist(monty,ylim = c(0,2500))                   # Store histogram info
+my_hist$counts <- cumsum(my_hist$counts)    # Change histogram counts
+plot(my_hist)  
 
 #Montecarlo Simulations
 dev.off()
@@ -182,12 +185,28 @@ color = c("red","blue","green")
 
 #Lambda tests____________________________________________________
 
+#Density---
 dev.off()
 par(mfrow=c(1,3))
 for(i in 1:3){
   monty_test = poisson_gamma_montecarlo(lambda = lambdas[i],alpha = alpha_lambdatest,beta = beta_lambdatest, nsim = 10000)
   par(new=FALSE)
   hist(monty_test,col = color[i],main = "Histogram of Poisson-Gamma LDA Monte Carlo Sim.",cex.main = 0.94,ylim = c(0,2500))
+}
+legend(13,1500,legend = c("lambda = 1","lambda = 3","lambda = 5"),col = c("red","blue","green"),lty = 1)
+legend(15,1200, legend = c("alpha = 3","beta = 2"))
+
+#Cumulative Distribution---
+dev.off()
+par(mfrow=c(1,3))
+for(i in 1:3){
+  monty_test = poisson_gamma_montecarlo(lambda = lambdas[i],alpha = alpha_lambdatest,beta = beta_lambdatest, nsim = 10000)
+  par(new=FALSE)
+  cuml_hist <- hist(monty_test);
+  
+  cuml_hist$counts <- cumsum(cuml_hist$counts)
+  plot(cuml_hist,col=color[i])
+  
 }
 legend(13,1500,legend = c("lambda = 1","lambda = 3","lambda = 5"),col = c("red","blue","green"),lty = 1)
 legend(15,1200, legend = c("alpha = 3","beta = 2"))
@@ -212,7 +231,7 @@ for(i in 1:3){
   monty_test = poisson_gamma_montecarlo(lambda_betatest,alpha_betatest,beta = betas[i], nsim = 10000)
   par(new=FALSE)
   hist(monty_test,col = color[i],main = "Histogram of Poisson-Gamma LDA Monte Carlo Sim.",cex.main = 0.94,xlab = "Loss amount",ylab = "",ylim = c(0,3000))
-  }
+}
 legend(4,3000,legend = c("beta = 1","beta = 3","beta = 5"),col = c("red","blue","green"),lty = 1)
 legend(4,2400, legend = c("lambda = 5","alpha = 3"))
 
