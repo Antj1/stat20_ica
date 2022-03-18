@@ -1,6 +1,5 @@
 rm(list=ls(all=TRUE))
 library(pracma)
-library(sads)
 dev.off()
 #Setting the parameters
 lambda <- 2
