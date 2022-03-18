@@ -127,7 +127,7 @@ for(i in 1:3){#Testing each parameter value for the density function
   plot(zs1,pgdens,main = "Density of LDA Model, Poisson Frequency-Gamma Severity", cex.main=1.05 ,xlab = "z",ylab="Density : f_Zn(z)",ylim = c(0,0.5),cex.lab=0.9,"l",col = color[i])
   par(new = TRUE)
 }
-legend(8,0.40,legend = c("beta = 1","beta = 3","beta = 5"),col = c("red","blue","green"),lty = 1)
+legend(8,0.40,legend = c("beta = 1","beta = 2","beta = 3"),col = c("red","blue","green"),lty = 1)
 legend(8,0.23, legend = c("lambda = 1","alpha = 2"))
 
 dev.off()
@@ -138,7 +138,7 @@ for(i in 1:3){#Testing each parameter value for the distribution function
   plot(zs2,pgcdf,main = "Distribution of LDA Model, Poisson Frequency-Gamma Severity", cex.main=1.05 ,xlab = "x",ylab="Distribution : F_Zn(z)",ylim = c(0,1),cex.lab=0.9,"l",col = color[i])
   par(new = TRUE)
 }
-legend(16,0.66,legend = c("beta = 1","beta = 3","beta = 5"),col = c("red","blue","green"),lty = 1)
+legend(16,0.66,legend = c("beta = 1","beta = 2","beta = 3"),col = c("red","blue","green"),lty = 1)
 legend(16,0.42, legend = c("lambda = 1","alpha = 2"))
 
 #Monte Carlo Simulation_______________________________________________________________
@@ -249,6 +249,6 @@ for(i in 1:3){#Testing the Monte carlo distribution for values of beta
   cuml_hist$counts <- cumsum(cuml_hist$counts)
   plot(cuml_hist,col=color[i],main = "Histogram of Annual Loss Distribution",cex.main = 0.94)
 }
-legend(6,6000,legend = c("beta = 1","beta = 3","beta = 5"),col = c("red","blue","green"),lty = 1,cex = 0.75)
+legend(6,6000,legend = c("beta = 1","beta = 2","beta = 3"),col = c("red","blue","green"),lty = 1,cex = 0.75)
 legend(6,3000, legend = c("lambda = 5","alpha = 3"),cex = 0.75)
 
